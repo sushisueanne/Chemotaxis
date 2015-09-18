@@ -1,16 +1,32 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
  int hiveX;
  int hiveY;
  Bacteria [] francine= new Bacteria [100];
  boolean mouseclicked = false;
 
- void setup()   
+ public void setup()   
  {     
  	size(500,500);
  	for (int i=0; i<francine.length; i++){
  	francine [i]= new Bacteria();
  	}
  }   
- void draw()   
+ public void draw()   
  {    
  	background(255,127,80);
  	for (int y=50; y<500; y=y+50){
@@ -40,7 +56,7 @@
  		myY=250;
 
  	} 
- 	void walk(){
+ 	public void walk(){
 
  		if (myX<500&&myY<500){
 
@@ -55,13 +71,13 @@
 		}
 
  	}
- 	void show(){
+ 	public void show(){
  		stroke(50);
  		fill(255,215,0);
  		ellipse(myX,myY,8,4);
  	}
 
- 	void mouseappear(){
+ 	public void mouseappear(){
  		stroke(50);
  		if (mouseclicked==true){
 	 		fill(251,239,68);
@@ -74,7 +90,7 @@
 
  	}
 
- 	void moveTowards(){
+ 	public void moveTowards(){
  	
 	 	if (mouseclicked==true){
 
@@ -98,8 +114,17 @@
  	}   
  }
 
- void mouseClicked(){
+ public void mouseClicked(){
  	hiveY=mouseY;
  	hiveX=mouseX;
  	mouseclicked=true;
  }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
